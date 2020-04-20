@@ -1,0 +1,101 @@
+{
+	"name": "secure-electron-template-hooks",
+	"version": "0.0.1-alpha.1",
+	"description": "The best way to build Electron apps with security in mind.",
+	"private": true,
+	"main": "app/electron/main.js",
+	"scripts": {
+		"postinstall": "electron-builder install-app-deps",
+		"dev-server": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
+		"dev": "concurrently \"npm run dev-server\" \"cross-env NODE_ENV=development electron .\" -k",
+		"prod-build": "cross-env NODE_ENV=production npx webpack --mode=production --config ./webpack.production.js",
+		"prod": "npm run prod-build && electron .",
+		"pack": "electron-builder --dir",
+		"dist": "npm run prod-build && electron-builder",
+		"dist-mac": "npm run prod-build && electron-builder --mac",
+		"dist-linux": "npm run prod-build && electron-builder --linux",
+		"dist-windows": "npm run prod-build && electron-builder --windows",
+		"dist-all": "npm run prod-build && electron-builder --mac --linux --windows"
+	},
+	"build": {
+		"productName": "YourProductName",
+		"appId": "com.yourcompany|electron.yourproductname",
+		"directories": {
+			"buildResources": "resources"
+		},
+		"win": {
+			"target": [
+				"nsis",
+				"msi"
+			]
+		},
+		"linux": {
+			"target": [
+				"deb",
+				"rpm",
+				"snap",
+				"AppImage"
+			]
+		}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ShaunLWM/secure-electron-template-hooks.git"
+	},
+	"keywords": [
+		"electron",
+		"security",
+		"template",
+		"react",
+		"redux",
+		"webpack",
+		"i18next",
+		"boilerplate"
+	],
+	"author": "ShaunLWM",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ShaunLWM/secure-electron-template-hooks/issues"
+	},
+	"homepage": "https://github.com/ShaunLWM/secure-electron-template-hooks#readme",
+	"devDependencies": {
+		"@babel/core": "^7.9.0",
+		"@babel/plugin-transform-react-jsx": "^7.9.4",
+		"@babel/preset-env": "^7.9.5",
+		"@babel/preset-react": "^7.9.4",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-module-resolver": "^4.0.0",
+		"concurrently": "^5.1.0",
+		"cross-env": "^7.0.2",
+		"csp-html-webpack-plugin": "^4.0.0",
+		"css-loader": "^3.5.2",
+		"electron": "^8.2.3",
+		"electron-builder": "^22.5.1",
+		"electron-debug": "^3.0.1",
+		"electron-devtools-installer": "^3.0.0",
+		"html-loader": "^1.1.0",
+		"html-webpack-plugin": "^4.2.0",
+		"mini-css-extract-plugin": "^0.9.0",
+		"style-loader": "^1.1.4",
+		"url-loader": "^4.1.0",
+		"webpack": "^4.42.1",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.10.3",
+		"webpack-merge": "^4.2.2"
+	},
+	"dependencies": {
+		"@babel/plugin-transform-runtime": "^7.9.0",
+		"i18next": "^19.4.2",
+		"i18next-electron-fs-backend": "^1.3.2",
+		"immer": "^6.0.3",
+		"lodash.merge": "^4.6.2",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-i18next": "^11.3.5",
+		"react-router": "^5.1.2",
+		"react-router-dom": "^5.1.2",
+		"secure-electron-context-menu": "^1.2.0",
+		"secure-electron-store": "1.1.0",
+		"use-immer": "^0.4.0"
+	}
+}
